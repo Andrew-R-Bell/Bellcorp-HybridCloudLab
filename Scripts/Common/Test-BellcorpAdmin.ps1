@@ -1,9 +1,11 @@
 function Test-BellcorpAdmin {
+    [CmdletBinding()]
+    param()
 
-    $CurrentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
-    $Principal = New-Object Security.Principal.WindowsPrincipal($CurrentUser)
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($identity)
 
-    return $Principal.IsInRole(
+    return $principal.IsInRole(
         [Security.Principal.WindowsBuiltInRole]::Administrator
     )
 }
